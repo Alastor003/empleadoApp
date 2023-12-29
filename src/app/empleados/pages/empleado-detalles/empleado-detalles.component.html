@@ -1,0 +1,14 @@
+<app-title [titulo]="nombreCompleto()" />
+<hr class="mb-2">
+
+@if (_empleado()?.id) {
+  <h3 class="text-3xl font-bold mb-2">Nombre: <span class="text-blue-500"> {{ _empleado()!.nombre | titlecase}} </span></h3>
+  <h3 class="text-3xl font-bold mb-2">Apellido: <span class="text-blue-500"> {{ _empleado()!.apellido | titlecase}} </span></h3>
+  <h3 class="text-3xl font-bold mb-2">Usuario: <span class="text-blue-500"> {{ _empleado()!.username }} </span></h3>
+  <h3 class="text-3xl font-bold mb-2">Actualmente el empleado se encuentra <span class="text-blue-500"> {{ _empleado()!.activo | estaActivo }} </span></h3>
+} @else {
+  <p class="text-3xl text-red-600 text-center">NO HAY NINGÚN USUARIO PARA MOSTRAR</p>
+}
+
+
+

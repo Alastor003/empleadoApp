@@ -1,0 +1,61 @@
+<app-title [titulo]="tituloActual() + ' Empleado'" />
+<hr class="mb-5">
+<form [formGroup]="myForm" (ngSubmit)="onSubmit()">
+  <div class="w-full px-3 sm:w-1/2">
+    <div class="mb-5">
+      <label class="mb-3 block text-base font-medium text-[#07074D]">
+        Nombre de Usuario
+      </label>
+      <input
+        type="text"
+        placeholder="Nombre de Usuario"
+        class="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md"
+        formControlName="username"
+      />
+      @if (esUnCampoValido('username')) {
+        <span class="text-red-600 uppercase">{{ obtenerErrorPorCampo('username') }}</span>
+      }
+    </div>
+  </div>
+  <div class="w-full px-3 sm:w-1/2">
+    <div class="mb-5">
+      <label class="mb-3 block text-base font-medium text-[#07074D]">
+        Nombre
+      </label>
+      <input
+        type="text"
+        placeholder="Nombre"
+        class="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md"
+        formControlName="nombre"
+      />
+      @if (esUnCampoValido('nombre')) {
+        <span class="text-red-600 uppercase">{{ obtenerErrorPorCampo('nombre') }}</span>
+      }
+    </div>
+  </div>
+  <div class="w-full px-3 sm:w-1/2">
+    <div class="mb-5">
+      <label class="mb-3 block text-base font-medium text-[#07074D]">
+        Apellido
+      </label>
+      <input
+        type="text"
+        placeholder="Apellido"
+        class="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md"
+        formControlName="apellido"
+      />
+      @if (esUnCampoValido('apellido')) {
+        <span class="text-red-600 uppercase">{{ obtenerErrorPorCampo('apellido') }}</span>
+      }
+    </div>
+  </div>
+
+  <button class="p-3 bg-blue-700 text-white rounded uppercase font-bold ml-3 hover:bg-blue-500">
+    {{ tituloActual() }}
+  </button>
+</form>
+
+
+
+
+

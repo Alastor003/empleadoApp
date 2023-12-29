@@ -1,0 +1,35 @@
+
+<app-title titulo="Listado de Empleados" />
+<hr>
+
+<table class="table-auto border border-collapse w-full mt-5">
+  <thead>
+    <tr class="bg-blue-200">
+      <th class="px-4 py-2">Username</th>
+      <th class="px-4 py-2">Nombre</th>
+      <th class="px-4 py-2">Apellido</th>
+      <th class="px-4 py-2">Activo</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    @for (empleado of empleados(); track $index)
+    {
+      <tr class="border-t">
+        <td class="px-4 py-2 text-center">{{ empleado.username }}</td>
+        <td class="px-4 py-2 text-center">{{ empleado.nombre }}</td>
+        <td class="px-4 py-2 text-center">{{ empleado.apellido }}</td>
+        <td class="px-4 py-2 text-center">{{ empleado.activo | estaActivo }}</td>
+        <td class="py-2">
+          <button type="button" class="px-3 py-2 mx-2 bg-green-600 hover:bg-green-400 transition-all rounded text-white" [routerLink]="['/empleados', empleado.id]"> Ver </button>
+          <button type="button" class="px-3 py-2 mx-2 bg-blue-600 hover:bg-blue-400 transition-all rounded  text-white" [routerLink]="['/empleados/editar', empleado.id]"> Editar </button>
+          <button (click)="borrarEmpleado(empleado.id)" type="button" class="px-3 py-2 bg-red-600 hover:bg-red-400 transition-all rounded  text-white"> Eliminar </button>
+        </td>
+      </tr>
+    } @empty {
+      <tr>
+        <td class="px-4 py-2 text-center" colspan="4">No hay Empleados</td>
+      </tr>
+    }
+  </tbody>
+</table>
