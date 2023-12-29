@@ -4,7 +4,7 @@ import { provideRouter } from '@angular/router';
 import { routes } from './app.routes';
 import { HttpClientModule } from '@angular/common/http';
 import { ReactiveFormsModule } from '@angular/forms';
-import { EstaActivo } from './empleados/pipes/estaActivo.pipe';
+import { EstaActivo } from './features/empleado/pipes/estaActivo.pipe';
 
 export const appConfig: ApplicationConfig = {
   providers: [provideRouter(routes),

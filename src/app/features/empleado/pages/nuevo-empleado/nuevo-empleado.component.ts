@@ -1,9 +1,9 @@
 import { Component, OnInit, inject } from '@angular/core';
-import { TitleComponent } from '../../components/title/title.component';
+import { TitleComponent } from '../../components/title.component';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
-import { EmpleadoService } from '../../services/empleado.service';
-import { Empleado } from '../../interfaces/empleado.interface';
+import { EmpleadoService } from '../../../../services/empleado.service';
+import { Empleado } from '../../../../models/interfaces/empleado.interface';
 import { CommonModule } from '@angular/common';
 import { v4 as uuidv4 } from 'uuid';
 import Swal from 'sweetalert2';

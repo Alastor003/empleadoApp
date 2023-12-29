@@ -1,8 +1,8 @@
 import { Component, OnInit, computed, inject, signal } from '@angular/core';
-import { Empleado } from '../../interfaces/empleado.interface';
-import { EmpleadoService } from '../../services/empleado.service';
+import { Empleado } from '../../../../models/interfaces/empleado.interface';
+import { EmpleadoService } from '../../../../services/empleado.service';
 import { ActivatedRoute } from '@angular/router';
-import { TitleComponent } from '../../components/title/title.component';
+import { TitleComponent } from '../../components/title.component';
 import { EstaActivo } from '../../pipes/estaActivo.pipe';
 import { CommonModule } from '@angular/common';
 

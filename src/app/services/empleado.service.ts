@@ -1,5 +1,5 @@
 import { Injectable, computed, signal } from '@angular/core';
-import { Empleado } from '../interfaces/empleado.interface';
+import { Empleado } from '../models/interfaces/empleado.interface';
 import { v4 as uuidv4 } from 'uuid';
 
 

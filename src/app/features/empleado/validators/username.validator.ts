@@ -1,5 +1,5 @@
 import { AbstractControl, ValidatorFn } from '@angular/forms';
-import { Empleado } from '../interfaces/empleado.interface';
+import { Empleado } from '../../../models/interfaces/empleado.interface';
 
 export function nombreUnicoValidator(empleados: Empleado[]): ValidatorFn {
   return (control: AbstractControl) => {
