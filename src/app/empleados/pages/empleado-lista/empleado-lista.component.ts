@@ -4,6 +4,7 @@ import { EmpleadoService } from '../../services/empleado.service';
 import { RouterLink } from '@angular/router';
 import { TitleComponent } from '../../components/title/title.component';
 import { EstaActivo } from '../../pipes/estaActivo.pipe';
+import Swal from 'sweetalert2'
 
 @Component({
   selector: 'app-empleado-lista',
@@ -26,8 +27,20 @@ export default class EmpleadoListaComponent implements OnInit {
       this.empleados.set(this.empleadoService.empleados())
     }
 
-    borrarEmpleado(id: string): void {
-      this.empleadoService.eliminarEmpleado(id);
+    darDeBajaEmpleado(id: string): void {
+      Swal.fire({
+        title: '¿Estás seguro?',
+        text: 'Esta acción dará de baja al empleado. ¿Deseas continuar?',
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonText: 'Sí, dar de baja',
+        cancelButtonText: 'Cancelar'
+      }).then((result) => {
+        if (result.isConfirmed) {
+          this.empleadoService.darDeBajaEmpleado(id);
+          Swal.fire('¡Dado de baja!', 'El empleado ha sido dado de baja.', 'success');
+        }
+      });
     }
 
 }

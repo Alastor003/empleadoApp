@@ -2,6 +2,7 @@ import { Injectable, computed, signal } from '@angular/core';
 import { Empleado } from '../interfaces/empleado.interface';
 import { v4 as uuidv4 } from 'uuid';
 
+
 @Injectable({
   providedIn: 'root'
 })
@@ -48,7 +49,7 @@ public empleados = computed(() => this._empleados())
   //   this._empleados.update(emp => emp.filter(empleado => empleado.id !== id));
   // }
 
-  eliminarEmpleado(id: string): void {
+  darDeBajaEmpleado(id: string): void {
     this._empleados.update(empleados => {
       const empleadoEncontrado = empleados.findIndex(empleado => empleado.id === id);
 

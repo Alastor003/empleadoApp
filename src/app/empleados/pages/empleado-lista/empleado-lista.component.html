@@ -23,7 +23,9 @@
         <td class="py-2">
           <button type="button" class="px-3 py-2 mx-2 bg-green-600 hover:bg-green-400 transition-all rounded text-white" [routerLink]="['/empleados', empleado.id]"> Ver </button>
           <button type="button" class="px-3 py-2 mx-2 bg-blue-600 hover:bg-blue-400 transition-all rounded  text-white" [routerLink]="['/empleados/editar', empleado.id]"> Editar </button>
-          <button (click)="borrarEmpleado(empleado.id)" type="button" class="px-3 py-2 bg-red-600 hover:bg-red-400 transition-all rounded  text-white"> Eliminar </button>
+          @if(empleado.activo){
+            <button (click)="darDeBajaEmpleado(empleado.id)" type="button" class="px-3 py-2 bg-red-600 hover:bg-red-400 transition-all rounded  text-white"> Eliminar </button>
+          }
         </td>
       </tr>
     } @empty {

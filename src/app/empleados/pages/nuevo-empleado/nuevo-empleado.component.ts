@@ -6,7 +6,7 @@ import { EmpleadoService } from '../../services/empleado.service';
 import { Empleado } from '../../interfaces/empleado.interface';
 import { CommonModule } from '@angular/common';
 import { v4 as uuidv4 } from 'uuid';
-import { switchMap } from 'rxjs';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-nuevo-empleado',
@@ -81,15 +81,25 @@ export default class NuevoEmpleadoComponent implements OnInit {
       return;
     }
 
-    if(this.EmpleadoActual.id) {
+    if (this.EmpleadoActual.id) {
       this.empleadoService.editarEmpleado(this.EmpleadoActual);
-      this.router.navigateByUrl('/empleados/lista');
-      return;
+      this.mostrarMensajeExito('Empleado editado con éxito');
+    } else {
+      this.EmpleadoActual.id = uuidv4();
+      this.empleadoService.agregarEmpleado(this.EmpleadoActual);
+      this.mostrarMensajeExito('Empleado agregado con éxito');
     }
 
-    this.EmpleadoActual.id = uuidv4();
-    this.empleadoService.agregarEmpleado(this.EmpleadoActual);
     this.router.navigateByUrl('/empleados/lista');
+  }
+
+  private mostrarMensajeExito(mensaje: string): void {
+    Swal.fire({
+      title: '¡Éxito!',
+      text: mensaje,
+      icon: 'success',
+      confirmButtonText: 'OK'
+    });
   }
 
 }
