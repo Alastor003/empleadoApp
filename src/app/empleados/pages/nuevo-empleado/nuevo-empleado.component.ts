@@ -7,6 +7,7 @@ import { Empleado } from '../../interfaces/empleado.interface';
 import { CommonModule } from '@angular/common';
 import { v4 as uuidv4 } from 'uuid';
 import Swal from 'sweetalert2';
+import { nombreUnicoValidator } from '../../validators/username.validator';
 
 @Component({
   selector: 'app-nuevo-empleado',
@@ -24,7 +25,7 @@ export default class NuevoEmpleadoComponent implements OnInit {
 
   public myForm: FormGroup = this.fb.group({
     id: [''],
-    username: ['',[Validators.required, Validators.maxLength(20), Validators.minLength(6)]],
+    username: ['',[Validators.required, Validators.maxLength(20), Validators.minLength(6), nombreUnicoValidator(this.empleadoService.empleados())]],
     nombre: ['', [Validators.required, Validators.pattern(/^[a-zA-Z]+$/), Validators.minLength(4), Validators.maxLength(50) ] ],
     apellido: ['', [Validators.required, Validators.pattern(/^[a-zA-Z]+$/), Validators.minLength(4), Validators.maxLength(50) ]],
     activo: [true, []],
@@ -60,6 +61,10 @@ export default class NuevoEmpleadoComponent implements OnInit {
 
         case 'maxlength':
           return `Máximo ${ errors['maxlength'].requiredLength } caracteres`;
+
+        case 'Ya existe el usuario':
+          return 'El nombre de usuario ya existe';
+
        }
     }
 
