@@ -44,7 +44,18 @@ public empleados = computed(() => this._empleados())
     })
   }
 
-  eliminarEmpleado(id: string):void {
-    this._empleados.update(emp => emp.filter(empleado => empleado.id !== id));
+  // eliminarEmpleado(id: string):void {
+  //   this._empleados.update(emp => emp.filter(empleado => empleado.id !== id));
+  // }
+
+  eliminarEmpleado(id: string): void {
+    this._empleados.update(empleados => {
+      const empleadoEncontrado = empleados.findIndex(empleado => empleado.id === id);
+
+      empleados[empleadoEncontrado].activo = false;
+
+
+      return empleados;
+    });
   }
 }
