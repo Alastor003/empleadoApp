@@ -19,6 +19,7 @@ export class EmpleadoService {
     }
 ])
 
+
 public empleados = computed(() => this._empleados())
 
   constructor() {
@@ -71,6 +72,7 @@ public empleados = computed(() => this._empleados())
   // }
 
   darDeBajaEmpleado(id: string): void {
+
     this._empleados.update(empleados => {
       const empleadoEncontrado = empleados.findIndex(empleado => empleado.id === id);
 

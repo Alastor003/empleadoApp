@@ -5,14 +5,13 @@ export function nombreUnicoValidator(empleados: Empleado[]): ValidatorFn {
   return (control: AbstractControl) => {
     const username = control.value;
 
-    if (username) {
-      const empleadoEditado = empleados.find(empleado => empleado.username === username);
+    if (!username) return null;
 
-      if (!empleadoEditado || empleadoEditado.id !== control.parent?.get('id')?.value) {
-        if (empleados.some(empleado => empleado.username === username)) {
-          return { 'Ya existe el usuario': { value: username } };
-        }
-      }
+    const empleadoEditado = empleados.find(empleado => empleado.username === username);
+    const isUsernameUnique = !empleadoEditado || empleadoEditado.id !== control.parent?.get('id')?.value;
+
+    if (!isUsernameUnique && empleados.some(empleado => empleado.username === username)) {
+      return { 'Ya existe el usuario': { value: username } };
     }
 
     return null;
