@@ -8,6 +8,7 @@ import { v4 as uuidv4 } from 'uuid';
 })
 export class EmpleadoService {
 
+  private localStorageKey = 'empleados';
   private _empleados = signal<Empleado[]>([
     {
       id: uuidv4(),
@@ -21,7 +22,21 @@ export class EmpleadoService {
 public empleados = computed(() => this._empleados())
 
   constructor() {
-    // console.log(this.getEmpleados())
+
+    this.cargarEmpleadosDesdeLocalStorage();
+  }
+
+  private cargarEmpleadosDesdeLocalStorage(): void {
+    const empleadosString = localStorage.getItem(this.localStorageKey);
+
+    if (empleadosString) {
+      const empleados = JSON.parse(empleadosString);
+      this._empleados.set(empleados);
+    }
+  }
+
+  private guardarEmpleadosEnLocalStorage(empleados: Empleado[]): void {
+    localStorage.setItem(this.localStorageKey, JSON.stringify(empleados));
   }
 
   empleadoPorId(id: string): Empleado | undefined {
@@ -29,7 +44,11 @@ public empleados = computed(() => this._empleados())
   }
 
   agregarEmpleado(empleado: Empleado): void {
-    this._empleados().push(empleado)
+    const empleados = this._empleados();
+    empleados.push(empleado);
+    this._empleados.set(empleados);
+
+    this.guardarEmpleadosEnLocalStorage(empleados);
   }
 
   editarEmpleado(empleadoEditado: Empleado):void {
@@ -40,6 +59,8 @@ public empleados = computed(() => this._empleados())
       const empleadoActualizado = empleados.findIndex(empleado => empleado.id === empleadoEditado.id)
 
       empleados[empleadoActualizado] = empleadoEditado
+
+      this.guardarEmpleadosEnLocalStorage(empleados);
 
       return empleados
     })
@@ -55,7 +76,7 @@ public empleados = computed(() => this._empleados())
 
       empleados[empleadoEncontrado].activo = false;
 
-
+      this.guardarEmpleadosEnLocalStorage(empleados);
       return empleados;
     });
   }
