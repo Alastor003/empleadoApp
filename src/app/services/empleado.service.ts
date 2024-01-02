@@ -9,15 +9,7 @@ import { v4 as uuidv4 } from 'uuid';
 export class EmpleadoService {
 
   private localStorageKey = 'empleados';
-  private _empleados = signal<Empleado[]>([
-    {
-      id: uuidv4(),
-      username: 'alvarowo',
-      nombre: 'alvaro',
-      apellido: 'benitez',
-      activo: true,
-    }
-])
+  private _empleados = signal<Empleado[]>([])
 
 
 public empleados = computed(() => this._empleados())
